@@ -17,9 +17,9 @@
         <Button x:Name="AddButton" Grid.Row="1" Content="Add" Click="AddButton_Click" />
 
         <ListBox x:Name="GroceryListBox" Grid.Row="2" Margin="10"/>
-        <Label Content="Label" Margin="755,10,10,155" Grid.Row="2"/>
+        <Label Content="{Binding Elemek.Count, StringFormat='Elemek száma: {0}'}" Margin="755,10,10,155" Grid.Row="2"/>
         
-        <Button x:Name="DeleteButton" Grid.Row="3" Content="Delete" Margin="10,10,400,10"/>
+        <Button x:Name="DeleteButton" Grid.Row="3" Content="Delete" Margin="10,10,400,10" Click="DeleteButton_Click_1"/>
         <Button x:Name="DeleteEveryButton" Grid.Row="3" Content="Delete All" Margin="400,10,10,10" Click="DeleteEveryButton_Click"/>
         
 

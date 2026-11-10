@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace BevasarloLista
@@ -8,19 +9,20 @@ namespace BevasarloLista
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<string> Elemek { get; set; } = new ObservableCollection<string>();
         private List<string> groceryItems = new List<string>();
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(GroceryTextBox.Text))
             {
-                groceryItems.Add(GroceryTextBox.Text);
-                GroceryListBox.ItemsSource = null;
-                GroceryListBox.ItemsSource = groceryItems;
+                Elemek.Add(GroceryTextBox.Text);
+                GroceryListBox.ItemsSource = Elemek;
                 GroceryTextBox.Clear();
             }
             else
@@ -37,17 +39,17 @@ namespace BevasarloLista
             }
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            groceryItems.Remove(GroceryListBox.SelectedItem as string);
-            GroceryListBox.ItemsSource = null;
-            GroceryListBox.ItemsSource = groceryItems;
-        }
-
         private void DeleteEveryButton_Click(object sender, RoutedEventArgs e)
         {
-            groceryItems.Clear();
-            GroceryListBox.ItemsSource = null;
+            Elemek.Clear();
+        }
+
+        private void DeleteButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (GroceryListBox.SelectedItem is string item)
+            {
+                Elemek.Remove(item);
+            }
         }
     }
 }
